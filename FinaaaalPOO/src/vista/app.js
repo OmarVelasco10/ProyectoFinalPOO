@@ -1,15 +1,13 @@
-import { request } from "express";
-
-const btnAgregar = document.getElementById("btnAgregar").addEventListener("click", (e)=>){
-
- let Nombre = parseInt(document.getElementById("Nombre").value);
- let Grado = parseInt(document.getElementById("Grado").value);
- let Grupo = parseInt(document.getElementById("Grupo").value);
- let Promedio = parseInt(document.getElementById("Promedio").value);
- let ID = parseInt(document.getElementById("ID").value);
+const btnAgregar = document.getElementById("btnAgregar").addEventListener("click", (e)=>{
+  var requestt=new XMLHttpRequest();
+ let Nombre = (document.getElementById("txtNombre").value);
+ let Grado = parseInt(document.getElementById("txtGrado").value);
+ let Grupo = (document.getElementById("txtGrupo").value);
+ let Promedio = parseInt(document.getElementById("txtPromedio").value);
+ let ID = parseInt(document.getElementById("txtID").value);
 
  requestt.open("POST", "http://localhost:3000/api/alumnos/", true);
- requestt.setRequestHeader("Cont-Type", "application/x-www-form-urlncoded");
+ requestt.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
 
  requestt.onreadystatechange=function(){
      if(this.readySate === XMLHttpRequest.DONE && this.status === 200)
@@ -21,8 +19,9 @@ const btnAgregar = document.getElementById("btnAgregar").addEventListener("click
            </div>`;
      }
  }
- request.send( alumnos.Nombre + alumnos.Grado + alumnos.Grupo + alumnos.Promedio);
-};
+
+ requestt.send( "Nombre=" + Nombre + "&Grado=" + Grado + "&Grupo=" + Grupo + "&Promedio=" + Promedio + "&ID=10");
+});
 
 const btnMostrar = document.getElementById("btnMostrar").addEventListener("click", (e)=>{
         var request=new XMLHttpRequest();
@@ -43,19 +42,19 @@ const btnMostrar = document.getElementById("btnMostrar").addEventListener("click
             }
         }
         request.send();
-    };
-};
+ });
 
 
-const btnActualizar = document.getElementById("btnActualizar").addEventListener("click", (e)=>){
 
- let Nombre = parseInt(document.getElementById("Nombre").value);
- let Grado = parseInt(document.getElementById("Grado").value);
- let Grupo = parseInt(document.getElementById("Grupo").value);
- let Promedio = parseInt(document.getElementById("Promedio").value);
- let ID = parseInt(document.getElementById("ID").value);
+const btnActualizar = document.getElementById("btnActualizar").addEventListener("click", (e)=>{
+  var requestt=new XMLHttpRequest();
+ let Nombre = parseInt(document.getElementById("txtNombre").value);
+ let Grado = parseInt(document.getElementById("txtGrado").value);
+ let Grupo = parseInt(document.getElementById("txtGrupo").value);
+ let Promedio = parseInt(document.getElementById("txtPromedio").value);
+ let ID = parseInt(document.getElementById("txtID").value);
 
- requestt.open("PUT", "http://localhost:3000/api/alumnos/", true);
+ requestt.open("PUT", "http://localhost:3000/api/alumnos/" + ID, true);
  requestt.setRequestHeader("Cont-Type", "application/x-www-form-urlncoded");
 
  requestt.onreadystatechange=function(){
@@ -68,15 +67,15 @@ const btnActualizar = document.getElementById("btnActualizar").addEventListener(
            </div>`;
      }
  }
- request.send( alumnos.Nombre + alumnos.Grado + alumnos.Grupo + alumnos.Promedio);
-};
+  requestt.send( "Nombre=" + Nombre + "&Grado=" + Grado + "&Grupo=" + Grupo + "&Promedio=" + Promedio + "&ID=10");
+});
 
-const btnEliminar = document.getElementById("btnEliminar").addEventListener("click", (e)=>){
-
-    let ID = parseInt(document.getElementById("ID").value);
+const btnEliminar = document.getElementById("btnEliminar").addEventListener("click", (e)=>{
+  var requestt=new XMLHttpRequest();
+    let ID = parseInt(document.getElementById("txtID").value);
    
-    requestt.open("DELETE", "http://localhost:3000/api/alumnos/", true);
-    requestt.setRequestHeader("Cont-Type", "application/x-www-form-urlncoded");
+    requestt.open("DELETE", "http://localhost:3000/api/alumnos/" + ID , true);
+    requestt.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
    
     requestt.onreadystatechange=function(){
         if(this.readySate === XMLHttpRequest.DONE && this.status === 200)
@@ -88,5 +87,5 @@ const btnEliminar = document.getElementById("btnEliminar").addEventListener("cli
               </div>`;
         }
     }
-    request.send("Eliminado");
-   };
+    //requestt.send();
+});
