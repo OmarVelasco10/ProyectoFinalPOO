@@ -1,0 +1,16 @@
+[
+    {
+        "id":"1",
+        "Nombre":"Diego Serratos",
+        "Grado":"1",
+        "Grupo":"C",
+        "Promedio":"9"
+    },
+    {
+        "id":"2",
+        "Nombre":"Ismael Cardenas",
+        "Grado":"2",
+        "Grupo":"C",
+        "Promedio":"8.5"
+    }
+]
